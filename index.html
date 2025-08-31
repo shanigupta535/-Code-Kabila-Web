@@ -6,7 +6,7 @@
   <title>Code Kabila - University Club</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="code kabila.png" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/code kabila.png" type="image/x-icon">
   <style>
     /* Simple slideshow animation */
     .slideshow {
@@ -27,6 +27,16 @@
     .slideshow img.active {
       opacity: 1;
     }
+    @keyframes scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.animate-scroll {
+  animation: scroll 15s linear infinite;
+}
+.animate-scroll:hover {
+  animation-play-state: paused; /* Hover par ruk jaayega */
+}
   </style>
 </head>
 <body class="bg-gray-900 text-white font-sans">
@@ -35,7 +45,7 @@
   <nav class="flex justify-between items-center px-6 py-4 bg-gray-800 shadow-lg">
     <!-- Logo -->
     <div class="flex items-center gap-2">
-      <img src="logo.jpeg" alt="Logo" class="logo rounded-full border border-indigo-400">
+      <img src="assets/logo.jpeg" alt="Logo" class="logo rounded-full border border-indigo-400">
       <h1 class="text-2xl font-bold text-indigo-400">Code Kabila </h1>
     </div>
     <ul class="flex gap-6">
@@ -46,20 +56,24 @@
     </ul>
   </nav>
 
-  <!-- Top Announcement Text Only -->
-  <span class="w-full bg-transparent text-white text-sm py-1 text-center">
-    <marquee behavior="scroll" direction="left" scrollamount="5">
-      📢 Announcement: Code Kabila Python Programming live Every Friday ! 🚀
-    </marquee>
-  </span>
+<!-- Modern Announcement Bar -->
+<div class="w-full text-center overflow-hidden">
+  <div class="inline-block whitespace-nowrap animate-scroll font-semibold tracking-wide text-white">
+    📢 Announcement: <span class="text-yellow-300 mx-2">Code Kabila Python Programming</span> Live Every 
+    <span class="text-green-300 mx-2">Friday!</span> 🚀🔥
+    📢 Announcement: <span class="text-yellow-300 mx-2">Code Kabila Python Programming</span> Live Every 
+    <span class="text-green-300 mx-2">Friday!</span> 🚀🔥
+  </div>
+</div>
+
 
   <!-- Slideshow -->
   <section class="px-6 py-8">
     <div class="slideshow max-w-5xl mx-auto shadow-lg">
-      <img src="1.png" class="active" alt="Slide 1">
-      <img src="2.jpeg" alt="Slide 2">
-      <img src="3.webp" alt="Slide 3">
-      <img src="4.webp" alt="Slide 4">
+      <img src="assets/1.png" class="active" alt="Slide 1">
+      <img src="assets/2.jpeg" alt="Slide 2">
+      <img src="assets/3.webp" alt="Slide 3">
+      <img src="assets/4.webp" alt="Slide 4">
     </div>
   </section>
 
@@ -74,7 +88,7 @@
   <section class="bg-[rgb(17,24,39)] text-white py-16 px-6">
     <div class="max-w-4xl mx-auto text-center">
       <!-- Logo -->
-      <img src="logo.jpeg"  alt="Logo" 
+      <img src="assets/logo.jpeg"  alt="Logo" 
            class="w-45 h-45 object-contain mx-auto mb-4 border-2 border-indigo-400 rounded-full shadow-lg">
 
       <!-- Title -->
@@ -88,8 +102,7 @@
         Join us to collaborate, compete, and grow together into confident developers ready for placements and beyond.
       </p>
 
-      <!-- Simple Contact Form -->
-     <!-- Simple Contact Form -->
+<!-- Simple Contact Form -->
 <section class="bg-gray-900 min-h-fit flex items-center justify-center py-8">
   <div class="bg-gray-800 text-white p-6 rounded-2xl shadow-lg max-w-md mx-auto border border-gray-700 w-full">
     
@@ -125,7 +138,6 @@
     </form>
   </div>
 </section>
-
 
   <!-- Social Links Section -->
   <div class="flex justify-center gap-6 py-6 bg-gray-900">
@@ -182,6 +194,4 @@
   </script>
 
 </body>
-
 </html>
-
