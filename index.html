@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Kabila - University Club</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="assets/code kabila.png" type="image/x-icon">
+  <style>
+    /* Simple slideshow animation */
+    .slideshow {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 1rem;
+    }
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .slideshow img.active {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center px-6 py-4 bg-gray-800 shadow-lg">
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <img src="assets/logo.jpeg" alt="Logo" class="logo rounded-full border border-indigo-400">
+      <h1 class="text-2xl font-bold text-indigo-400">Code Kabila </h1>
+    </div>
+    <ul class="flex gap-6">
+      <li><a href="index.html" class="hover:text-indigo-400">Home</a></li>
+      <li><a href="members.html" class="hover:text-indigo-400">Members</a></li>
+      <li><a href="event.html" class="hover:text-indigo-400">Events</a></li>
+      <li><a href="contact.html" class="hover:text-indigo-400">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Top Announcement Text Only -->
+  <span class="w-full bg-transparent text-white text-sm py-1 text-center">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+      📢 Announcement: Code Kabila Python Programming live Every Friday ! 🚀
+    </marquee>
+  </span>
+
+  <!-- Slideshow -->
+  <section class="px-6 py-8">
+    <div class="slideshow max-w-5xl mx-auto shadow-lg">
+      <img src="assets/1.png" class="active" alt="Slide 1">
+      <img src="assets/2.jpeg" alt="Slide 2">
+      <img src="assets/3.webp" alt="Slide 3">
+      <img src="assets/4.webp" alt="Slide 4">
+    </div>
+  </section>
+
+  <!-- Hero Section -->
+  <section class="flex flex-col justify-center items-center text-center px-6 py-16">
+    <h2 class="text-4xl md:text-6xl font-bold mb-6">Welcome to <span class="text-indigo-400">University Coding Club</span></h2>
+    <p class="text-lg md:text-xl text-gray-300 max-w-2xl mb-8">A place where innovation, creativity, and technology come together. Join us to learn, build, and grow with fellow coding enthusiasts.</p>
+    <a href="members.html" class="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-lg rounded-full shadow-lg">Meet Our Members</a>
+  </section>
+
+  <!-- Hero Section for Code Kabila -->
+  <section class="bg-[rgb(17,24,39)] text-white py-16 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Logo -->
+      <img src="assets/logo.jpeg"  alt="Logo" 
+           class="w-45 h-45 object-contain mx-auto mb-4 border-2 border-indigo-400 rounded-full shadow-lg">
+
+      <!-- Title -->
+      <h1 class="text-4xl font-extrabold mb-4">🚀 Join to <span class="text-indigo-400">Code Kabila</span></h1>
+
+      <!-- Tagline -->
+      <p class="text-lg mb-6 text-gray-300 leading-relaxed">
+        At <span class="font-semibold text-white">Code Kabila</span>, we empower students to sharpen their coding skills, 
+        prepare for <span class="text-indigo-300">DSA mock interviews</span>, and access 
+        structured <span class="text-indigo-300">learning modules</span>.  
+        Join us to collaborate, compete, and grow together into confident developers ready for placements and beyond.
+      </p>
+
+      <!-- Simple Contact Form -->
+      <section class="bg-gray-900 min-h-fit flex items-center justify-center py-8">
+        <div class="bg-gray-800 text-white p-6 rounded-2xl shadow-lg max-w-md mx-auto border border-gray-700 w-full">
+          
+          <h2 class="text-2xl font-bold mb-4 text-indigo-400 text-center">Join Code Kabila</h2>
+          <p class="text-gray-400 text-sm mb-6 text-center">
+            Be a part of our coding community! We provide <span class="text-indigo-400">DSA mock interviews</span>, 
+            <span class="text-indigo-400">modules</span>, and <span class="text-indigo-400">real project experience</span>. 
+            Fill this form to join and get our WhatsApp group link instantly.
+          </p>
+
+          <!-- FormSubmit integration -->
+          <form action="https://formsubmit.co/shanigupta8282@gmail.com" method="POST" class="flex flex-col gap-4">
+
+            <!-- Redirect to WhatsApp group after submit -->
+            <input type="hidden" name="_next" value="https://chat.whatsapp.com/JQTIKKeYX1HA24qZiYNWUE">
+            <input type="hidden" name="_captcha" value="false">
+
+            <input type="text" name="name" placeholder="Your Full Name" required
+                   class="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:ring-2 focus:ring-indigo-500 outline-none text-white">
+            <input type="email" name="email" placeholder="Your Email Address" required
+                   class="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:ring-2 focus:ring-indigo-500 outline-none text-white">
+            <textarea name="message" placeholder="Why do you want to join?" rows="3"
+                      class="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:ring-2 focus:ring-indigo-500 outline-none text-white"></textarea>
+
+            <button type="submit" 
+                    class="bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition font-semibold">
+              Join Now 🚀
+            </button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- Social Links Section -->
+  <div class="flex justify-center gap-6 py-6 bg-gray-900">
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/codekabila?igsh=dzdkbDJvYTVzaHFi" target="_blank" 
+       class="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-tr from-pink-500 to-yellow-500 shadow-lg hover:scale-110 transition">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" 
+           class="w-6 h-6 text-white" viewBox="0 0 24 24">
+        <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm4.75-.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/>
+      </svg>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/school/rama-university/posts/?feedView=all" target="_blank" 
+       class="w-12 h-12 flex items-center justify-center rounded-full bg-blue-600 shadow-lg hover:scale-110 transition">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" 
+           class="w-6 h-6 text-white" viewBox="0 0 24 24">
+        <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0h4.7v2.2h.07c.65-1.23 2.25-2.53 4.63-2.53C20.4 7.67 22 10.12 22 14.1V24h-5v-9.33c0-2.22-.79-3.73-2.77-3.73-1.51 0-2.41 1.02-2.8 2-.14.34-.18.82-.18 1.3V24h-5V8z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 bg-gray-900 border-t border-gray-700">
+    <p>&copy; 2025 University Coding Club. All rights reserved.</p>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a 
+    href="https://chat.whatsapp.com/JQTIKKeYX1HA24qZiYNWUE" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    aria-label="Join WhatsApp Group"
+    class="fixed right-5 bottom-5 z-[9999] bg-green-500 rounded-full p-4 shadow-lg hover:scale-110 transition"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         fill="currentColor" 
+         viewBox="0 0 24 24" 
+         class="w-8 h-8 text-white">
+      <path d="M20.52 3.48A11.86 11.86 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.19 1.6 6.02L0 24l6.17-1.62A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 22c-1.79 0-3.53-.48-5.05-1.39l-.36-.21-3.65.96.98-3.56-.24-.37A9.91 9.91 0 012 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93S22 9.33 22 12c0 5.52-4.48 10-10 10zm5.28-7.39c-.29-.15-1.71-.84-1.98-.94-.27-.1-.47-.15-.67.15-.2.29-.77.94-.94 1.13-.17.2-.35.22-.64.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.6.13-.13.29-.35.44-.52.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01s-.52.07-.79.37c-.27.29-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.21 5.09 4.5.71.31 1.27.5 1.7.64.71.23 1.35.2 1.86.12.57-.08 1.71-.7 1.95-1.38.24-.68.24-1.26.17-1.38-.07-.12-.27-.19-.56-.34z"/>
+    </svg>
+  </a>
+
+  <script>
+    // Slideshow Script
+    const slides = document.querySelectorAll(".slideshow img");
+    let currentSlide = 0;
+
+    setInterval(() => {
+      slides[currentSlide].classList.remove("active");
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add("active");
+    }, 2000); // change every 2 sec
+  </script>
+
+</body>
+</html>

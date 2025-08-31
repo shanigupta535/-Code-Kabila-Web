@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coding Club • Contacts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Subtle glass look + backdrop */
+    body {
+      background: linear-gradient(180deg,#0f172a 0%, #081129 60%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .glass {
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    /* LinkedIn icon hover */
+    .linkedin:hover { transform: translateY(-3px); }
+    /* subtle card entrance */
+    .card { transform: translateY(6px); transition: transform .25s ease, box-shadow .25s ease; }
+    .card:hover { transform: translateY(0); box-shadow: 0 12px 30px rgba(2,6,23,0.6); }
+    /* phone copy toast */
+    #toast { transition: opacity .25s ease; }
+  </style>
+</head>
+<body class="text-slate-100 font-inter">
+
+  <header class="py-8 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <!-- Small logo -->
+       <div class="w-14 h-14 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center shadow-xl">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M2 5a2 2 0 012-2h2.28a1 1 0 01.948.684l1.4 4.2a1 1 0 01-.272 1.026l-1.98 1.98a16 16 0 007.07 7.07l1.98-1.98a1 1 0 011.026-.272l4.2 1.4a1 1 0 01.684.948V20a2 2 0 01-2 2h-1C9.163 22 2 14.837 2 6V5z"/>
+  </svg>
+</div>
+
+        </div>
+        <div>
+          <h1 class="text-2xl md:text-3xl font-semibold">Coding Club • Contacts</h1>
+          <p class="text-sm text-slate-300 mt-0.5">15 key members — call or connect on LinkedIn</p>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center gap-3">
+        <a href="index.html" class="px-4 py-2 text-sm rounded-full glass hover:scale-105 transition">Home</a>
+        <a href="members.html" class="px-4 py-2 text-sm rounded-full glass hover:scale-105 transition">Members</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 md:px-12 pb-12">
+    <!-- Search + CTA -->
+    <section class="mb-8">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="w-full md:w-2/3">
+          <label class="sr-only">Search contacts</label>
+          <div class="relative">
+            <input id="search" type="search" placeholder="Search by name, role, or phone..." 
+                   class="w-full px-4 py-3 rounded-xl glass placeholder-slate-400 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+            <div class="absolute right-3 top-1/2 -translate-y-1/2 opacity-70">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M21 21l-4.35-4.35" stroke="#cbd5e1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="11" cy="11" r="6" stroke="#cbd5e1" stroke-width="1.6"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <button id="copyAll" class="px-4 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm shadow">Copy All Numbers</button>
+          <a href="#" class="px-4 py-2 rounded-full glass text-sm">Export CSV</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacts grid -->
+    <section>
+      <div id="contactsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Each contact card -->
+        <!-- We'll include 15 cards below. Customize names/numbers/links as needed. -->
+       
+        <!-- 1 -->
+        <article class="card glass p-5 rounded-2xl flex gap-4 items-center">
+          <img src="shani row.jpg" alt="" class="w-16 h-16 rounded-full border-2 border-indigo-400 object-cover">
+          <div class="flex-1">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h3 class="text-lg font-semibold">Shani Gupta</h3>
+                <p class="text-sm text-slate-300">Web Developer </p>
+              </div>
+              <div class="flex flex-col items-end gap-2">
+                <a class="linkedin" href="https://www.linkedin.com/in/shani-gupta-4864b0367?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer" title="LinkedIn">
+                  <!-- LinkedIn SVG -->
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#0ea5e9">
+                    <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zM8 8h4.8v2.2h.1C13.6 8.3 15.9 7 18.9 7 24 7 24 10.9 24 16.4V24h-5V17c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V24H8V8z"/>
+                  </svg>
+                </a>
+                <button class="copyBtn text-xs px-3 py-1 rounded-full glass" data-phone="+91-98765-00001" title="Copy number">Copy</button>
+              </div>
+            </div>
+            <div class="mt-3 flex items-center gap-3 text-sm">
+              <a href="tel:+919876500001" class="px-3 py-2 bg-slate-800 rounded-full text-slate-200 hover:bg-slate-700">📞 +91-9519340353</a>
+              <span class="text-slate-400">•</span>
+              <span class="text-slate-300">Spec: Frontend & UI</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="card glass p-5 rounded-2xl flex gap-4 items-center">
+          <img src="shashwat.jpg" alt="" class="w-16 h-16 rounded-full border-2 border-indigo-400">
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="text-lg font-semibold">Shashwat Jaiswal</h3>
+                <p class="text-sm text-slate-300">Python Dev </p>
+              </div>
+              <div class="flex flex-col items-end gap-2">
+                <a class="linkedin" href="https://www.linkedin.com/in/shashwat-jaiswal-28b9b4346?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#0ea5e9">
+                    <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zM8 8h4.8v2.2h.1C13.6 8.3 15.9 7 18.9 7 24 7 24 10.9 24 16.4V24h-5V17c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V24H8V8z"/>
+                  </svg>
+                </a>
+                <button class="copyBtn text-xs px-3 py-1 rounded-full glass" data-phone="+91-98765-00002">Copy</button>
+              </div>
+            </div>
+            <div class="mt-3 flex items-center gap-3 text-sm">
+              <a href="tel:+919555045617" class="px-3 py-2 bg-slate-800 rounded-full text-slate-200 hover:bg-slate-700">📞 +91-98765-00002</a>
+              <span class="text-slate-400">•</span>
+              <span class="text-slate-300">Spec: ML & Data</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3 -->
+       <article class="card glass p-5 rounded-2xl flex gap-4 items-center">
+  <img src="sumit.jpg" alt="Sumit Saxena" class="w-16 h-16 rounded-full border-2 border-indigo-400">
+  <div class="flex-1">
+    <div class="flex items-start justify-between">
+      <div>
+        <h3 class="text-lg font-semibold">Sumit Saxena</h3>
+        <p class="text-sm text-slate-300">Treasurer</p>
+      </div>
+      <div class="flex flex-col items-end gap-2">
+        <a class="linkedin" href="https://www.linkedin.com/in/sumit-saxena-807789360?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0ea5e9">
+            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zM8 8h4.8v2.2h.1C13.6 8.3 15.9 7 18.9 7 24 7 24 10.9 24 16.4V24h-5V17c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V24H8V8z"/>
+          </svg>
+        </a>
+        <button class="copyBtn text-xs px-3 py-1 rounded-full glass" data-phone="+91-9336351813">Copy</button>
+      </div>
+    </div>
+    <div class="mt-3 flex items-center gap-3 text-sm">
+      <a href="tel:+919336351813" class="px-3 py-2 bg-slate-800 rounded-full text-slate-200 hover:bg-slate-700">📞 +91-9336351813</a>
+      <span class="text-slate-400">•</span>
+      <span class="text-slate-300">Spec: Finance & Management</span>
+    </div>
+  </div>
+</article>
+
+
+        <!-- 4 -->
+      <article class="card glass p-5 rounded-2xl flex gap-4 items-center">
+  <img src="stuti.jpg" alt="Stuti Saxena" class="w-16 h-16 rounded-full border-2 border-indigo-400">
+  <div class="flex-1">
+    <div class="flex items-start justify-between">
+      <div>
+        <h3 class="text-lg font-semibold">Stuti Saxena</h3>
+        <p class="text-sm text-slate-300">Vice Chair</p>
+      </div>
+      <div class="flex flex-col items-end gap-2">
+        <a class="linkedin" href="https://www.linkedin.com/in/stuti-saxena-611133282?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0ea5e9">
+            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zM8 8h4.8v2.2h.1C13.6 8.3 15.9 7 18.9 7 24 7 24 10.9 24 16.4V24h-5V17c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V24H8V8z"/>
+          </svg>
+        </a>
+        <button class="copyBtn text-xs px-3 py-1 rounded-full glass" data-phone="+91-8115025021">Copy</button>
+      </div>
+    </div>
+    <div class="mt-3 flex items-center gap-3 text-sm">
+      <a href="tel:+918115025021" class="px-3 py-2 bg-slate-800 rounded-full text-slate-200 hover:bg-slate-700">📞 +91-8115025021</a>
+      <span class="text-slate-400">•</span>
+      <span class="text-slate-300">Spec: Leadership & Management</span>
+    </div>
+  </div>
+</article>
+
+
+        <!-- 5 -->
+       <article class="card glass p-5 rounded-2xl flex gap-4 items-center">
+  <img src="anshika.jpg" alt="Anushka" class="w-16 h-16 rounded-full border-2 border-indigo-400">
+  <div class="flex-1">
+    <div class="flex items-start justify-between">
+      <div>
+        <h3 class="text-lg font-semibold">Anushka</h3>
+        <p class="text-sm text-slate-300">Content & Creative Head</p>
+      </div>
+      <div class="flex flex-col items-end gap-2">
+        <a class="linkedin" href="https://www.linkedin.com/in/anushka-katiyar-70741533a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0ea5e9">
+            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zM8 8h4.8v2.2h.1C13.6 8.3 15.9 7 18.9 7 24 7 24 10.9 24 16.4V24h-5V17c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V24H8V8z"/>
+          </svg>
+        </a>
+        <button class="copyBtn text-xs px-3 py-1 rounded-full glass" data-phone="+91-7395041931">Copy</button>
+      </div>
+    </div>
+    <div class="mt-3 flex items-center gap-3 text-sm">
+      <a href="tel:+917395041931" class="px-3 py-2 bg-slate-800 rounded-full text-slate-200 hover:bg-slate-700">📞 +91-7395041931</a>
+      <span class="text-slate-400">•</span>
+      <span class="text-slate-300">Spec: Creativity & Content</span>
+    </div>
+  </div>
+</article>
+
+
+        <!-- 6 -->
+   
+      <article class="card glass p-5 rounded-2xl flex gap-4 items-center">
+  <img src="aryan.jpg" alt="Aryan Jha" class="w-16 h-16 rounded-full border-2 border-indigo-400">
+  <div class="flex-1">
+    <div class="flex items-start justify-between">
+      <div>
+        <h3 class="text-lg font-semibold">Aryan Jha</h3>
+        <p class="text-sm text-slate-300">Chairperson</p>
+      </div>
+      <div class="flex flex-col items-end gap-2">
+        <a class="linkedin" href="https://www.linkedin.com/in/aryan-jha-6a6a49318?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0ea5e9">
+            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zM8 8h4.8v2.2h.1C13.6 8.3 15.9 7 18.9 7 24 7 24 10.9 24 16.4V24h-5V17c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V24H8V8z"/>
+          </svg>
+        </a>
+        <button class="copyBtn text-xs px-3 py-1 rounded-full glass" data-phone="+91-7307699739">Copy</button>
+      </div>
+    </div>
+    <div class="mt-3 flex items-center gap-3 text-sm">
+      <a href="tel:+917307699739" class="px-3 py-2 bg-slate-800 rounded-full text-slate-200 hover:bg-slate-700">📞 +91-7307699739</a>
+      <span class="text-slate-400">•</span>
+      <span class="text-slate-300">Spec: Leadership & Management</span>
+    </div>
+  </div>
+</article>
+
+        <!-- 7 -->
+           
+     <article class="card glass p-5 rounded-2xl flex gap-4 items-center">
+  <img src="nikhil.jpg" alt="Nikhil Gupta" class="w-16 h-16 rounded-full border-2 border-indigo-400">
+  <div class="flex-1">
+    <div class="flex items-start justify-between">
+      <div>
+        <h3 class="text-lg font-semibold">Nikhil Gupta</h3>
+        <p class="text-sm text-slate-300">Digital & Media Head</p>
+      </div>
+      <div class="flex flex-col items-end gap-2">
+        <a class="linkedin" href="https://www.linkedin.com/in/Nikhil Gupta" target="_blank" rel="noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0ea5e9">
+            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zM8 8h4.8v2.2h.1C13.6 8.3 15.9 7 18.9 7 24 7 24 10.9 24 16.4V24h-5V17c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V24H8V8z"/>
+          </svg>
+        </a>
+        <button class="copyBtn text-xs px-3 py-1 rounded-full glass" data-phone="+91-0000000000">Copy</button>
+      </div>
+    </div>
+    <div class="mt-3 flex items-center gap-3 text-sm">
+      <a href="tel:+919026831445" class="px-3 py-2 bg-slate-800 rounded-full text-slate-200 hover:bg-slate-700">📞 +91-9026831445</a>
+      <span class="text-slate-400">•</span>
+      <span class="text-slate-300">Spec: Partnerships & Networking</span>
+    </div>
+  </div>
+</article>
+
+        <!-- 8 -->
+      <article class="card glass p-5 rounded-2xl flex gap-4 items-center">
+  <img src="iqra.jpg" alt="Iqra Alam" class="w-16 h-16 rounded-full border-2 border-indigo-400">
+  <div class="flex-1">
+    <div class="flex items-start justify-between">
+      <div>
+        <h3 class="text-lg font-semibold">Iqra Alam</h3>
+        <p class="text-sm text-slate-300">Collaboration Head</p>
+      </div>
+      <div class="flex flex-col items-end gap-2">
+        <a class="linkedin" href="https://www.linkedin.com/in/iqra-alam-example" target="_blank" rel="noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0ea5e9">
+            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zM8 8h4.8v2.2h.1C13.6 8.3 15.9 7 18.9 7 24 7 24 10.9 24 16.4V24h-5V17c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V24H8V8z"/>
+          </svg>
+        </a>
+        <button class="copyBtn text-xs px-3 py-1 rounded-full glass" data-phone="+91-0000000000">Copy</button>
+      </div>
+    </div>
+    <div class="mt-3 flex items-center gap-3 text-sm">
+      <a href="tel:+919026831445" class="px-3 py-2 bg-slate-800 rounded-full text-slate-200 hover:bg-slate-700">📞 +91-9026831445</a>
+      <span class="text-slate-400">•</span>
+      <span class="text-slate-300">Spec: Partnerships & Networking</span>
+    </div>
+  </div>
+</article>
+
+
+        <!-- 9 -->
+       <article class="card glass p-5 rounded-2xl flex gap-4 items-center">
+  <img src="devika.jpg" alt="Devika Gupta" class="w-16 h-16 rounded-full border-2 border-indigo-400">
+  <div class="flex-1">
+    <div class="flex items-start justify-between">
+      <div>
+        <h3 class="text-lg font-semibold">Devika Gupta</h3>
+        <p class="text-sm text-slate-300">Membership Chair</p>
+      </div>
+      <div class="flex flex-col items-end gap-2">
+        <a class="linkedin" href="https://www.linkedin.com/in/devika-gupta-example" target="_blank" rel="noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0ea5e9">
+            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zM8 8h4.8v2.2h.1C13.6 8.3 15.9 7 18.9 7 24 7 24 10.9 24 16.4V24h-5V17c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V24H8V8z"/>
+          </svg>
+        </a>
+        <button class="copyBtn text-xs px-3 py-1 rounded-full glass" data-phone="+91-0000000000">Copy</button>
+      </div>
+    </div>
+    <div class="mt-3 flex items-center gap-3 text-sm">
+      <a href="tel:+919555524500" class="px-3 py-2 bg-slate-800 rounded-full text-slate-200 hover:bg-slate-700">📞 +91-9555524500</a>
+      <span class="text-slate-400">•</span>
+      <span class="text-slate-300">Spec: Membership & Community</span>
+    </div>
+  </div>
+</article>
+
+
+      
+
+        
+
+      </div>
+    </section>
+  </main>
+
+  <!-- small toast for copy feedback -->
+  <div id="toast" class="fixed right-6 bottom-6 bg-slate-800 text-slate-100 px-4 py-2 rounded-lg shadow-lg opacity-0 pointer-events-none">
+    Number copied to clipboard!
+  </div>
+
+  <footer class="text-center py-8 text-slate-400">
+    © 2025 University Coding Club • Customize numbers & LinkedIn URLs in the HTML
+  </footer>
+
+  <script>
+    // Search filter
+    const search = document.getElementById('search');
+    const contactsGrid = document.getElementById('contactsGrid');
+    search.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      const cards = contactsGrid.querySelectorAll('article');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    });
+
+    // Copy single number
+    const copyButtons = document.querySelectorAll('.copyBtn');
+    const toast = document.getElementById('toast');
+    copyButtons.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const phone = btn.getAttribute('data-phone') || '';
+        if (!phone) return;
+        try {
+          await navigator.clipboard.writeText(phone);
+          showToast();
+        } catch (err) {
+          // fallback
+          const input = document.createElement('input');
+          input.value = phone;
+          document.body.appendChild(input);
+          input.select();
+          document.execCommand('copy');
+          input.remove();
+          showToast();
+        }
+      });
+    });
+
+    // Copy all numbers
+    document.getElementById('copyAll').addEventListener('click', async () => {
+      const phones = Array.from(document.querySelectorAll('.copyBtn')).map(b => b.dataset.phone).filter(Boolean).join('\\n');
+      try {
+        await navigator.clipboard.writeText(phones);
+        showToast('All numbers copied!');
+      } catch {
+        showToast('Copied!');
+      }
+    });
+
+    function showToast(msg = 'Number copied to clipboard!') {
+      toast.textContent = msg;
+      toast.style.opacity = 1;
+      toast.style.pointerEvents = 'auto';
+      setTimeout(() => {
+        toast.style.opacity = 0;
+        toast.style.pointerEvents = 'none';
+      }, 1600);
+    }
+  </script>
+</body>
+</html>
