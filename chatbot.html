@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding Helper Bot</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="shortcut icon" href="chat.png" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #4f46e5, #6d28d9);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+    }
+    
+    #chatbot {
+      width: 380px;
+      height: 580px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    #chat-header {
+      background: linear-gradient(to right, #4f46e5, #6d28d9);
+      color: white;
+      padding: 16px;
+      font-weight: bold;
+      text-align: center;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+    }
+    
+    #chat-header .status-indicator {
+      width: 10px;
+      height: 10px;
+      background: #22c55e;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 12px;
+      right: 20px;
+    }
+    
+    #chat-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      font-size: 14px;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    #chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    #chat-messages::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    
+    #chat-messages::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    
+    .message-container {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .message-time {
+      font-size: 10px;
+      color: #64748b;
+      margin-left: 8px;
+    }
+    
+    .user {
+      align-self: flex-end;
+      color: #111;
+      margin: 0;
+      padding: 10px 14px;
+      background: #4f46e5;
+      color: white;
+      border-radius: 12px 12px 4px 12px;
+      max-width: 80%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .bot {
+      align-self: flex-start;
+      color: #222;
+      margin: 0;
+      padding: 12px 14px;
+      background: #f1f5f9;
+      border-radius: 12px 12px 12px 4px;
+      max-width: 85%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .bot b {
+      color: #4f46e5;
+    }
+    
+    .input-area {
+      display: flex;
+      padding: 12px;
+      border-top: 1px solid #e2e8f0;
+      background: #fff;
+      gap: 8px;
+    }
+    
+    #chat-input {
+      flex: 1;
+      border: 1px solid #e2e8f0;
+      padding: 12px 16px;
+      outline: none;
+      font-size: 14px;
+      border-radius: 24px;
+      background: #f8fafc;
+      transition: all 0.3s ease;
+    }
+    
+    #chat-input:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+    }
+    
+    #send-button {
+      background: #4f46e5;
+      color: white;
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    #send-button:hover {
+      background: #4338ca;
+      transform: scale(1.05);
+    }
+    
+    .suggestion-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px 16px;
+      border-top: 1px solid #e2e8f0;
+      background: #f8fafc;
+    }
+    
+    .chip {
+      background: #eef2ff;
+      color: #4f46e5;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .chip:hover {
+      background: #e0e7ff;
+      transform: translateY(-2px);
+    }
+    
+    .typing-indicator {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      background: #f1f5f9;
+      border-radius: 12px;
+      width: fit-content;
+      margin: 4px 0;
+    }
+    
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      background: #64748b;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+    
+    .typing-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .typing-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .welcome-message {
+      text-align: center;
+      padding: 12px;
+      background: #f1f5f9;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+
+
+    
+<div id="chatbot">
+  <div id="chat-header">
+    <i class="fas fa-robot"></i>
+    Coding Helper Bot
+    <i class="fas fa-code"></i>
+    <div class="status-indicator"></div>
+  </div>
+  
+  <div id="chat-messages">
+    <div class="welcome-message">
+      <b>Welcome to Coding Helper!</b> I can assist you with programming concepts from beginner to advanced.
+    </div>
+  </div>
+  
+  <div class="suggestion-chips">
+    <div class="chip" onclick="suggestionChip('beginner')">Beginner Tips</div>
+    <div class="chip" onclick="suggestionChip('html')">HTML</div>
+    <div class="chip" onclick="suggestionChip('javascript')">JavaScript</div>
+    <div class="chip" onclick="suggestionChip('python')">Python</div>
+    <div class="chip" onclick="suggestionChip('advanced')">Advanced Topics</div>
+  </div>
+  
+  <div class="input-area">
+    <input id="chat-input" type="text" placeholder="Ask about programming..." onkeypress="handleKeyPress(event)">
+    <button id="send-button" onclick="sendMessage()">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </div>
+</div>
+
+<script>
+const botReplies = {
+  "hello": "👋 Hello! I'm here to help you with coding. Ask me about programming languages, concepts, or career advice!",
+  "hi": "👋 Hi there! How can I assist with your coding journey today?",
+  "beginner": "🚀 Starting to code? Great choice! Begin with HTML & CSS for web development, or Python for general programming. Practice regularly and build small projects!",
+  "which language": "👉 Depends on your goal:\n- Web Dev → HTML, CSS, JS, React\n- Data Science → Python, SQL, ML\n- App Dev → Java, Kotlin, Flutter\n- Cybersecurity → Python, Linux, Networking\n- Competitive Programming → C++ / Java",
+  "html": "📄 HTML → The standard markup language for creating web pages. Start with basic tags like &lt;html&gt;, &lt;head&gt;, &lt;body&gt;, &lt;div&gt;, and &lt;p&gt;. Then learn about forms, tables, and semantic HTML5.",
+  "css": "🎨 CSS → Styles your HTML. Learn selectors, box model, flexbox, grid, and responsive design. Frameworks like Bootstrap can help you style faster.",
+  "javascript": "⚡ JavaScript → Makes websites interactive. Start with fundamentals (variables, functions, DOM manipulation), then ES6+ features, async JS, and frameworks like React.",
+  "python": "🐍 Python → Great for beginners! Learn syntax, data structures, then move to libraries for data analysis (Pandas), web development (Django/Flask), or machine learning (TensorFlow).",
+  "java": "☕ Java → Object-oriented language used for Android apps, enterprise software, and more. Learn OOP concepts, Java APIs, and Spring framework for web development.",
+  "c++": "🔌 C++ → Powerful for system programming, game development, and competitive coding. Learn memory management, STL, and advanced OOP concepts.",
+  "react": "⚛️ React → JavaScript library for building UIs. Start with JSX, components, state/props, hooks, then routing and state management with Redux.",
+  "ml": "🤖 ML → Start with Python, learn math (stats, linear algebra), then libraries like Scikit-learn, TensorFlow, PyTorch. Practice with real datasets on Kaggle.",
+  "ai": "🧠 AI → Begin with Python, learn math basics, then ML algorithms, neural networks, NLP, and computer vision. Deep learning frameworks like TensorFlow/PyTorch are essential.",
+  "cybersecurity": "🔒 Cybersecurity → Learn networking fundamentals, Linux, Python scripting, and security concepts. Certifications like CEH or Security+ can be helpful.",
+  "dsa": "📊 DSA → Essential for coding interviews. Learn time complexity, then practice arrays, strings, linked lists, trees, graphs, and dynamic programming on platforms like LeetCode.",
+  "advanced": "🎯 Advanced topics include: System Design, Distributed Systems, Machine Learning Engineering, DevOps, Cloud Architecture, and Advanced Algorithms.",
+  "resources": "📚 Helpful resources:\n- FreeCodeCamp (free tutorials)\n- MDN Web Docs (web technologies)\n- Stack Overflow (Q&A)\n- LeetCode (interview practice)\n- Coursera/Udemy (courses)",
+  "project": "💡 Project ideas:\n- Todo list app\n- Weather app with API\n- Personal portfolio website\n- Chat application\n- Machine learning model on dataset",
+  "job": "💼 For coding jobs:\n- Build a strong portfolio\n- Practice algorithm questions\n- Contribute to open source\n- Network on LinkedIn\n- Prepare for behavioral interviews",
+  "default": "🤔 I'm not sure I understand. Try asking about:\n- Specific programming languages (HTML, Python, Java)\n- Career paths (Web Dev, Data Science)\n- Concepts (DSA, ML, Cybersecurity)\n- Or type 'resources' for learning materials"
+};
+
+function getCurrentTime() {
+  const now = new Date();
+  return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
+function handleKeyPress(event) {
+  if (event.key === 'Enter') {
+    sendMessage();
+  }
+}
+
+function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const messages = document.getElementById('chat-messages');
+  const userMsg = input.value.trim();
+  
+  if (!userMsg) return;
+  
+  // Add user message
+  const messageContainer = document.createElement('div');
+  messageContainer.className = 'message-container';
+  messageContainer.innerHTML = `
+    <div class="user">${userMsg}</div>
+    <span class="message-time">${getCurrentTime()}</span>
+  `;
+  messages.appendChild(messageContainer);
+  
+  // Clear input
+  input.value = '';
+  
+  // Show typing indicator
+  const typingIndicator = document.createElement('div');
+  typingIndicator.className = 'typing-indicator';
+  typingIndicator.id = 'typing-indicator';
+  typingIndicator.innerHTML = `
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+  `;
+  messages.appendChild(typingIndicator);
+  typingIndicator.style.display = 'flex';
+  
+  messages.scrollTop = messages.scrollHeight;
+  
+  // Simulate bot thinking
+  setTimeout(() => {
+    // Remove typing indicator
+    typingIndicator.remove();
+    
+    // Generate bot reply
+    let reply = botReplies.default;
+    for (let key in botReplies) {
+      if (userMsg.toLowerCase().includes(key)) {
+        reply = botReplies[key];
+        break;
+      }
+    }
+    
+    // Add bot message
+    const botMessageContainer = document.createElement('div');
+    botMessageContainer.className = 'message-container';
+    botMessageContainer.innerHTML = `
+      <div class="bot"><b>Bot:</b> ${reply}</div>
+      <span class="message-time">${getCurrentTime()}</span>
+    `;
+    messages.appendChild(botMessageContainer);
+    
+    messages.scrollTop = messages.scrollHeight;
+  }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
+}
+
+function suggestionChip(topic) {
+  const input = document.getElementById('chat-input');
+  input.value = topic;
+  sendMessage();
+}
+
+// Welcome message when page loads
+window.onload = function() {
+  const messages = document.getElementById('chat-messages');
+  const welcomeContainer = document.createElement('div');
+  welcomeContainer.className = 'message-container';
+  welcomeContainer.innerHTML = `
+    <div class="bot"><b>Bot:</b> 👋 Namaste! I can help you learn coding from beginner to advanced levels. Ask me about programming languages, concepts, or career guidance!</div>
+    <span class="message-time">${getCurrentTime()}</span>
+  `;
+  messages.appendChild(welcomeContainer);
+};
+</script>
+
+</body>
+</html>
