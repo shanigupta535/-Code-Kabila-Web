@@ -242,9 +242,6 @@
 </head>
 <body>
 
-
-
-    
 <div id="chatbot">
   <div id="chat-header">
     <i class="fas fa-robot"></i>
@@ -376,8 +373,8 @@ function suggestionChip(topic) {
   sendMessage();
 }
 
-// Welcome message when page loads
-window.onload = function() {
+// Initialize the chat when page loads
+document.addEventListener('DOMContentLoaded', function() {
   const messages = document.getElementById('chat-messages');
   const welcomeContainer = document.createElement('div');
   welcomeContainer.className = 'message-container';
@@ -386,7 +383,15 @@ window.onload = function() {
     <span class="message-time">${getCurrentTime()}</span>
   `;
   messages.appendChild(welcomeContainer);
-};
+  
+  // Add event listener for browser back/forward buttons
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+      // Page was loaded from cache, ensure proper display
+      messages.scrollTop = messages.scrollHeight;
+    }
+  });
+});
 </script>
 
 </body>
